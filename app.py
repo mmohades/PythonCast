@@ -1,4 +1,8 @@
-from flask import Flask
+#  !/usr/bin/env python
+#  Copyright © 2019 Mark Mohades.
+#  MIT License
+
+from flask import Flask, request
 from flask_assistant import Assistant
 
 from app.main.config import PROJECT_ID, PROJECT_TOKEN
@@ -12,16 +16,26 @@ app.config['INTEGRATIONS'] = ['ACTIONS_ON_GOOGLE']
 
 @assist.action('CastIntent')
 def casting(q):
+    """
+
+    :param q: The query extracted by Dialogflow
+    :type q: str
+
+    :returns: flask_assistant.tell
+    """
     return cast_intent(q)
 
 
-@app.route('/broadcast', methods=['POST'])
+@app.route('/broadcast', methods=["POST"])
 def take_action():
-    return youtube_broadcast()
+    """
+    q should be provided as a param.
+    :return: JSON
+    """
+    return youtube_broadcast(request)
 
 
 if __name__ == '__main__':
-    # app.run('0.0.0.0', debug=True)
-    from app.main.service.casting_service import cast_youtube
-    cast_youtube("Nothing else matters")
+    app.run('0.0.0.0', debug=True)
+
 

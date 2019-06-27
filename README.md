@@ -1,2 +1,2 @@
-#Python Cast
-## Cast youtube videos on TV by asking from your Google Home.
+# Python Cast
+## Broadcast youtube videos on TV by asking Google Home

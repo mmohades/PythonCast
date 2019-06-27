@@ -1,7 +1,14 @@
+#  !/usr/bin/env python
+#  Copyright © 2019 Mark Mohades.
+#  MIT License
+
 import webbrowser
 import os
 from time import sleep
 from pynput.keyboard import Key, Controller
+import platform
+
+keyboard = Controller()
 
 
 def press_key(key):
@@ -10,7 +17,6 @@ def press_key(key):
     :param key:
     :return:
     """
-    keyboard = Controller()
 
     if type(key) is not str and\
             type(key) is not Key or\
@@ -23,16 +29,26 @@ def press_key(key):
 
 def open_in_browser(link):
 
-    # chromium_path = "/usr/bin/chromium-browser"
-    # webbrowser.register('chromium', None, webbrowser.BackgroundBrowser(chromium_path), 1)
-    browser = webbrowser#.get('chromium')
-
-    browser.open(link, autoraise=True)
+    webbrowser.open(link, autoraise=True)
 
 
-def close_tabs():
+def close_tab():
 
-    browser_exe = "chromium-browse"
+    if platform.system() == "Darwin":
+        keyboard.press(Key.cmd_l)
+        keyboard.press('w')
+        keyboard.release(Key.cmd_l)
+        keyboard.release('w')
+    else:
+        keyboard.press(Key.ctrl)
+        keyboard.press('w')
+        keyboard.release(Key.cmd_l)
+        keyboard.release('w')
+
+
+def close():
+
+    browser_exe = "Google Chrome"
     os.system("pkill " + browser_exe)
 
 
@@ -70,8 +86,10 @@ def restart():
 
 if __name__ == '__main__':
 
-    open_in_browser("https://www.youtube.com/watch?v=tAGnKpE4NCI")
+    # open_in_browser("https://www.youtube.com/watch?v=tAGnKpE4NCI")
+    # sleep(5)
+    # full_screen()
+    # sleep(5)
+    # close()
     sleep(5)
-    full_screen()
-    sleep(5)
-    close_tabs()
+    close_tab()

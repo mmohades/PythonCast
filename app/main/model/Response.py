@@ -1,9 +1,14 @@
+#  !/usr/bin/env python
+#  Copyright © 2019 Mark Mohades.
+#  MIT License
+
+
 class Error:
     def __init__(self, reason):
         self.reason = reason
         self.confirmation = "Failed"
 
-    def json(self):
+    def dic(self):
         return {
             "confirmation": self.confirmation,
             "reason": self.reason
@@ -15,7 +20,7 @@ class Success:
         self.data = data
         self.confirmation = "Successful"
 
-    def json(self):
+    def dic(self):
         return {
             "confirmation": self.confirmation,
             "data": self.data

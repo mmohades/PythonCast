@@ -1,3 +1,7 @@
+#  !/usr/bin/env python
+#  Copyright © 2019 Mark Mohades.
+#  MIT License
+
 import requests
 from ..config import API_KEY
 from ..model.Response import Error, Success

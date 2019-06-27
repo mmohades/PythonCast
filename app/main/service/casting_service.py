@@ -1,10 +1,14 @@
+#  !/usr/bin/env python
+#  Copyright © 2019 Mark Mohades.
+#  MIT License
+
 from .youtube_api import get_video_info
 from ..util import browserController as Browser
 from time import sleep
 import threading
 
 
-def cast_youtube(query):
+def broadcast_youtube(query):
 
     result = get_video_info(query)
     if result.confirmation == "Failed":
@@ -23,7 +27,7 @@ def broadcast_link(link):
     :param link:
     :return:
     """
-    Browser.close_tabs()
+    Browser.close_tab()
     Browser.open_in_browser(link)
     sleep(15)
     Browser.full_screen()
