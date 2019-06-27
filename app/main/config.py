@@ -1,6 +1,9 @@
 import json
 
-config_file = json.loads(open('config.json').read())
+try:
+    config_file = json.loads(open('config.json').read())
+except FileNotFoundError:
+    print("config.json file is missing!")
 
 
 class Config:
@@ -10,6 +13,6 @@ class Config:
     DEBUG = True
 
 
-api_key = Config.YOUTUBE_API_KEY
-project_token = Config.ACTION_CLIENT_TOKEN
-project_id = Config.ACTION_PROJECT_ID
+API_KEY = Config.YOUTUBE_API_KEY
+PROJECT_TOKEN = Config.ACTION_CLIENT_TOKEN
+PROJECT_ID = Config.ACTION_PROJECT_ID
